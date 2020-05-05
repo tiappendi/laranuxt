@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 // route group for uer authenticated only
 Route::group(['middleware' => ['auth:api']], function () {
-
+    // authenticated routes
 });
 
 

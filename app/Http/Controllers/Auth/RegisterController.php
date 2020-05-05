@@ -28,7 +28,9 @@ class RegisterController extends Controller
     protected function registered(Request $request, User $user)
     {
         //dd($user);
+        // this works
         // return response()->json('ciao', 200);
+        // seems $user can't be see
         return response()->json($user, 200);
     }
     // /**
