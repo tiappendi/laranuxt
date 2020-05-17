@@ -7,9 +7,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
+use Illuminate\Auth\Notifications\VerifyEmail;
 
-
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable implements JWTSubject, MustVerifyEmail
 {
     use Notifiable, SpatialTrait;
 
@@ -52,7 +52,9 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
-
+    public function sendEmailVerificationNotification(){
+        $this->notify(new VerifyEmail);
+    }
     public function getJWTIdentifier()
     {
         return $this->getKey();

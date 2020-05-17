@@ -51,7 +51,7 @@ class RegistersUsers extends Controller
     {
         dd($data);
         return Validator::make($data, [
-            'username' => ['required', 'string', 'max:20', 'alph_dash', 'unique:users,username'],
+            'username' => ['required', 'string', 'max:20', 'alpha_dash', 'unique:users,username'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
