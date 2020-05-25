@@ -30,7 +30,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         'formatted_address'
     ];
 
-    protected $spatialFileds = [
+    protected $spatialFields = [
         'location'
     ];
 

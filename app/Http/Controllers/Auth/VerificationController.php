@@ -50,17 +50,17 @@ class VerificationController extends Controller
         // check if url is valid signed in laravel
         if( !URL::hasValidSignedIn($request)){
             return response()->json(
-                ['error' =>
+                ['errors' =>
                     ['message' => 'invalid verificaion link']
                 ],
             422);
         }
 
         // verify the account
-        if ($user->hasVeriedEmail()){
+        if ($user->hasVerifiedEmail()){
             return response()->json(
                 [
-                    'error' =>
+                    'errors' =>
                     ['message' => 'email already verified']
                 ],
                 422
@@ -80,15 +80,19 @@ class VerificationController extends Controller
 
         $user = User::where('email', $request->email)->first();
         if (!$user) {
-            return response()->json(['errors'=> [
-                'email' => 'no user could be found with this email address'
-            ]], 422);
-        }
-
-        if ($user->hasVeriedEmail()) {
             return response()->json(
                 [
-                    'error' =>
+                    'errors'=> [
+                        'email' => 'no user could be found with this email address'
+                    ]
+                ], 422
+            );
+        }
+
+        if ($user->hasVerifiedEmail()) {
+            return response()->json(
+                [
+                    'errors' =>
                     ['message' => 'email already verified']
                 ],
                 422

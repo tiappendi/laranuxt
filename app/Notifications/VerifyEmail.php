@@ -7,15 +7,16 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Support\Facades\URL;
 // use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Auth\Notifications\VerifyEmail as Notification;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Messages\VerifyEmail as VerifyEmailOriginal;
+// use Illuminate\Notifications\Messages\VerifyEmail as VerifyEmailOriginal;
 
-class VerifyEmail extends VerifyEmailOriginal
+class VerifyEmail extends Notification
 {
     // use Queueable;
 
     protected function verificationUrl($notifiable) {
-        $appUrl = config('app-client_url', config('app.url'));
+        $appUrl = config('app.client_url', config('app.url'));
 
         $url = URL::temporaySignedRoute(
                 'verification.verify',
